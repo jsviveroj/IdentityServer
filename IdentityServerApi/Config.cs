@@ -1,5 +1,6 @@
 ﻿using Duende.IdentityServer.Models;
 using IdentityServerApi.Models;
+using IdentityServerApi.Utility;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace IdentityServerApi
         public static IEnumerable<ApiResource> Apis =>
             new ApiResource[]
             {
-                new ApiResource("identityApi", "Identity Server API")
+                new ApiResource(Routes.Scopes.UsersApiScope, "Users API")
             };
 
         public static IEnumerable<Client> Clients 

@@ -12,7 +12,7 @@ namespace IdentityServerApi.Installer
                 {
                     options.Authority = configuration.GetSection("IdentityServer:Base").Value;
                     options.RequireHttpsMetadata = false;
-                    options.Audience = "identityApi";
+                    options.Audience = "UsersApi";
                 });
         }
     }

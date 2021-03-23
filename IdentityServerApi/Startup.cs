@@ -39,24 +39,22 @@ namespace IdentityServerApi
 
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
 
-            //app.UseSwagger(option =>
-            //{
-            //    option.RouteTemplate = swaggerOptions.JsonRoute;
-            //});
+            app.UseSwagger();
 
-            //app.UseSwaggerUI(option =>
-            //{
-            //    option.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
-            //});
+            app.UseSwaggerUI(option =>
+            {
+                option.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
+                option.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
