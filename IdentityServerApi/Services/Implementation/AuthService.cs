@@ -23,7 +23,7 @@ namespace IdentityServerApi.Services.Implementation
                 Address = client.BaseAddress.AbsoluteUri,
                 ClientId = clientId,
                 ClientSecret = secret,
-                Scope = Routes.Scopes.UsersApiScope
+                Scope = Routes.Scopes.All
             });
 
             if (response.Error == null)

@@ -7,13 +7,12 @@ namespace IdentityServerApi.Installer
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddIdentityServer(options =>
-            {
-                options.EmitStaticAudienceClaim = true;
-            })
-            .AddInMemoryPersistedGrants()
-            .AddInMemoryApiResources(Config.Apis)
-            .AddInMemoryClients(Config.Clients);
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryApiScopes(Config.ApiScopes)
+                .AddInMemoryIdentityResources(Config.IdentityResources)
+                .AddInMemoryApiResources(Config.Apis)
+                .AddInMemoryClients(Config.Clients);
         }
     }
 }
