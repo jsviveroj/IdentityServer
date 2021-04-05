@@ -1,4 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Duende.IdentityServer.AspNetIdentity;
+using Duende.IdentityServer.Validation;
+using IdentityServerApi.Context;
+using IdentityServerApi.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace IdentityServerApi.Installer
@@ -13,6 +18,16 @@ namespace IdentityServerApi.Installer
                 .AddInMemoryIdentityResources(Config.IdentityResources)
                 .AddInMemoryApiResources(Config.Apis)
                 .AddInMemoryClients(Config.Clients);
+
+            services.AddIdentity<User, IdentityRole>(conf =>
+            {
+                conf.User.RequireUniqueEmail = true;
+            })
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<IdentityServerContext>()
+            .AddDefaultTokenProviders();
+
+            services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator<User>>();
         }
     }
 }

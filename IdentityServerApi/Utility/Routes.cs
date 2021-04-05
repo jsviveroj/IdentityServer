@@ -35,6 +35,11 @@
             public const string GetClientToken = "Auth/ApiToken";
         }
 
+        public static class UserController
+        {
+            public const string CreateUser = "User/Create";
+        }
+
 
     }
 }
