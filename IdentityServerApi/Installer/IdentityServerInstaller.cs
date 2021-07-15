@@ -12,13 +12,6 @@ namespace IdentityServerApi.Installer
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
-                .AddInMemoryApiScopes(Config.ApiScopes)
-                .AddInMemoryIdentityResources(Config.IdentityResources)
-                .AddInMemoryApiResources(Config.Apis)
-                .AddInMemoryClients(Config.Clients);
-
             services.AddIdentity<User, IdentityRole>(conf =>
             {
                 conf.User.RequireUniqueEmail = true;
@@ -26,6 +19,14 @@ namespace IdentityServerApi.Installer
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<IdentityServerContext>()
             .AddDefaultTokenProviders();
+
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryApiScopes(Config.ApiScopes)
+                .AddInMemoryIdentityResources(Config.IdentityResources)
+                .AddInMemoryApiResources(Config.Apis)
+                .AddInMemoryClients(Config.Clients)
+                .AddAspNetIdentity<User>();
 
             services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator<User>>();
         }

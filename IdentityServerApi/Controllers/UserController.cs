@@ -19,9 +19,6 @@ namespace IdentityServerApi.Controllers
 
         [HttpPost(Routes.UserController.CreateUser)]
         public async Task<IActionResult> CreateUser([FromBody] UserDto user)
-        {
-            var response = await _userService.CreateUser(user);
-            return Ok(response);
-        }
+            =>Ok(await _userService.CreateUser(user));
     }
 }

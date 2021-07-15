@@ -33,6 +33,7 @@
         public static class AuthController
         {
             public const string GetClientToken = "Auth/ApiToken";
+            public const string GetPasswordToken = "Auth/Login";
         }
 
         public static class UserController
